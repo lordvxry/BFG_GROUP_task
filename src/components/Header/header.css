@@ -1,0 +1,6 @@
+.header-container {
+    width: 100%;
+    height: 50px;
+    border-top: 3px solid #F48225;
+    background-color: rgba(214, 217, 220, 0.24);
+}
