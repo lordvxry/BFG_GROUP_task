@@ -9,12 +9,17 @@ const QuestionList = (props) => {
     const {questions, upgradeScore, downgradeScore} = props
     const [selectedDate, setSelectedDate] = useState(initialDate)
     const [showSearch, setShowSearch] = useState(false)
+    const [openedPostId, setOpenedPostId] = useState(0)
 
     function onChangeShowSearch(date) {
         selectedDate.setHours(0, 0, 0, 0) === date.setHours(0, 0, 0, 0)
             ? setShowSearch(false)
             : setShowSearch(true)
         setSelectedDate(date)
+    }
+
+    function onChangeDropdown(id) {
+        setOpenedPostId(openedPostId === id ? 0 : id)
     }
 
     return (
@@ -41,6 +46,8 @@ const QuestionList = (props) => {
                             question={question}
                             upgradeScore={upgradeScore}
                             downgradeScore={downgradeScore}
+                            openedPostId={openedPostId}
+                            onChangeDropdown={onChangeDropdown}
                         />
                     )
                 })}

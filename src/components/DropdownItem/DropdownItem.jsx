@@ -11,9 +11,10 @@ const DropdownItem = (props) => {
     } = props
 
     return (
-        <div>
-            {active ? (<div className="DropdownItem-container" >
-                    <div>
+           <div className={`DropdownItem-container ${active ? 'opened' : ''}`} >
+                {active && (
+                    <>
+                     <div>
                         Имя автора вопроса: {display_name}
                     </div>
                     <div>
@@ -22,11 +23,9 @@ const DropdownItem = (props) => {
                     <div>
                         Количество просмотров: {view}
                     </div>
+                    </>
+                )}
                 </div>)
-                :
-                (<div/>)}
-        </div>
-    );
 };
 
 export default DropdownItem;

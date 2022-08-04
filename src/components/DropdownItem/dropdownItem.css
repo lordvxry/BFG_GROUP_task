@@ -1,5 +1,8 @@
 .DropdownItem-container{
-    width: 100%;
-    min-height: 50px;
+    transition: .2s ease-in-out;
+}
+
+.opened {
+    max-height: 500px;
     padding: 20px;
 }

@@ -3,12 +3,17 @@
     box-shadow: 0 0 2px 1px gray;
     cursor: pointer;
 }
+
 .questionItem-content {
     min-height: 60px;
     padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.questionItem-content:hover {
+opacity: 0.8;
 }
 
 .answered{
@@ -38,12 +43,15 @@
     padding: 0;
     cursor: pointer;
     color: #1a5407;
+    width: 20px;
+    border-radius: 6px;
 }
 
 .questionItem-score-buttons button:hover{
-    color: #32a604;
+    background-color: #32a604;
+    border: 1px solid teal;
 }
 
 .questionItem-score-buttons button:active{
-    color: rgba(50, 166, 4, 0.69);
+    background-color: rgba(50, 166, 4, 0.69);
 }

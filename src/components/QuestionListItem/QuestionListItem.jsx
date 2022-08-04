@@ -14,19 +14,13 @@ const QuestionListItem = (props) => {
             view_count
         },
         upgradeScore,
-        downgradeScore
+        downgradeScore,
+        onChangeDropdown,
+        openedPostId
     } = props
-
-    const [active, setActive] = useState(false)
-    const [currentId, setCurrentId] = useState(question_id)
 
     const down = "\u2B07"
     const up = "\u2B06"
-
-    function onChangeDropdown(id) {
-        setCurrentId(id)
-        setActive(!active)
-    }
 
     return (
         <div className="questionItem-container" onClick={() => onChangeDropdown(question_id)}>
@@ -48,7 +42,7 @@ const QuestionListItem = (props) => {
             <DropdownItem
                 view={view_count}
                 owner={owner}
-                active={active}
+                active={openedPostId === question_id}
             />
         </div>
     );
