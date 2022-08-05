@@ -1,15 +1,14 @@
 import axios from "axios";
 import {setQuestions, setIsLoading} from "../reducers/questionReducer";
 
-export const getQuestions = () => {
+export const getQuestions = (date) => {
     return async (dispatch) => {
         dispatch(setIsLoading(true));
         const items = []
-
         for (let i = 1; i < 26; i++) {
             const params = {
                 tagged: 'react-redux',
-                fromdate: 1514764800,
+                fromdate: date,
                 page: i,
                 pageSize: 100,
                 order: 'desc',
@@ -24,12 +23,11 @@ export const getQuestions = () => {
                     items.push(item)
                 }
             })
-
             if (items.length === 5) break;
         }
-        
-        console.log(items);
 
-        dispatch(setQuestions(items));
+        dispatch(setQuestions(items.map((elem, index ) => {
+            return {...elem, order: index + 1}
+        })));
     };
 };

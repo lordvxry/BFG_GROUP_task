@@ -2,11 +2,11 @@ const SET_QUESTIONS = "SET_CATALOG";
 const SET_IS_LOADING = "SET_IS_LOADING";
 const UPGRADE_SCORE = "UPGRADE_SCORE";
 const DOWNGRADE_SCORE = "DOWNGRADE_SCORE";
+const UPDATE_ORDER = "UPDATE_ORDER";
 
 const initialState = {
     questions: [],
     loading: true,
-    score: 0,
 };
 
 export default function questionReducer(state = initialState, action) {
@@ -44,6 +44,20 @@ export default function questionReducer(state = initialState, action) {
                     return question
                 })
             };
+        case UPDATE_ORDER:
+            return {
+                ...state,
+                questions: state.questions.map(question => {
+                    action.sortedQuestions.map(item => {
+                        if (question.question_id === item.question_id) {
+                            question.order = item.order
+                            return {...question}
+                        }
+                        return question
+                    })
+                    return question
+                })
+            };
         default:
             return state;
     }
@@ -68,5 +82,11 @@ export const upgradeScore = (questionId) => {
 export const downgradeScore = (questionId) => {
     return {
         type: DOWNGRADE_SCORE, questionId
+    };
+};
+
+export const updateOrder = (sortedQuestions) => {
+    return {
+        type: UPDATE_ORDER, sortedQuestions
     };
 };
