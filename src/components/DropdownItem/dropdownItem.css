@@ -1,8 +1,19 @@
-.DropdownItem-container{
-    transition: .2s ease-in-out;
+.dropdownItem-container {
+  transition: 0.2s ease-in-out;
 }
 
 .opened {
-    max-height: 500px;
-    padding: 20px;
+  max-height: 500px;
+  padding: 20px;
+}
+
+.dropdownItem-content{
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.dropdownItem-content span{
+color: rgb(77, 77, 77);
+font-size: 16px;
 }

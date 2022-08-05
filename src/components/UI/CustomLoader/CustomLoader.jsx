@@ -1,10 +1,8 @@
-import React from 'react';
-import "./customLoader.css"
+import React from "react";
+import "./customLoader.css";
 
 const CustomLoader = () => {
-    return (
-        <div className="loader"/>
-    );
+  return <div className="loader" />;
 };
 
 export default CustomLoader;

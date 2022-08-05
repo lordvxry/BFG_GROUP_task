@@ -1,62 +1,64 @@
 .questionItem-container {
-    width: 100%;
-    box-shadow: 0 0 2px 1px gray;
-    cursor: pointer;
+  width: 100%;
+  box-shadow: 0 0 2px 1px gray;
+  cursor: pointer;
 }
 
 .questionItem-content {
-    min-height: 60px;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  min-height: 60px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .questionItem-content:hover {
- box-shadow: 0 0 2px 2px #F48225;
+  box-shadow: 0 0 2px 2px #f48225;
 }
 
-.answered{
-    background-color: rgba(5, 164, 5, 0.56);
+.answered {
+  background-color: rgba(5, 164, 5, 0.56);
 }
 
-.selected{
-    background-color: rgba(156, 227, 255, 0.65);
+.selected {
+  background-color: rgba(156, 227, 255, 0.65);
 }
 
-.questionItem-title{
-    pointer-events: none;
-    width: 60%;
+.questionItem-title {
+  pointer-events: none;
+  width: 60%;
+  color: rgb(51, 51, 51);
+  font-size: 18px;
 }
 
-.questionItem-score-container{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #424242;
+.questionItem-score-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #424242;
 }
 
-.questionItem-score-buttons{
-    display: flex;
-    flex-direction: column;
+.questionItem-score-buttons {
+  display: flex;
+  flex-direction: column;
 }
 
-.questionItem-score-buttons button{
-    background: none;
-    border: none;
-    font-size: 17px;
-    padding: 0;
-    cursor: pointer;
-    color: #1a5407;
-    width: 20px;
-    border-radius: 6px;
+.questionItem-score-buttons button {
+  background: none;
+  border: none;
+  font-size: 17px;
+  padding: 0;
+  cursor: pointer;
+  color: #1a5407;
+  width: 20px;
+  border-radius: 6px;
 }
 
-.questionItem-score-buttons button:hover{
-    background-color: #d0cfcf;
+.questionItem-score-buttons button:hover {
+  background-color: #d0cfcf;
 }
 
-.questionItem-score-buttons button:active{
-    background-color: rgba(208, 207, 207, 0.75);
-    box-shadow: 1px 1px rgb(122, 122, 122);
+.questionItem-score-buttons button:active {
+  background-color: rgba(208, 207, 207, 0.75);
+  box-shadow: 1px 1px rgb(122, 122, 122);
 }

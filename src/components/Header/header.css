@@ -1,6 +1,15 @@
 .header-container {
-    width: 100%;
-    height: 50px;
-    border-top: 3px solid #F48225;
-    background-color: rgba(214, 217, 220, 0.24);
+  width: 100%;
+  height: 70px;
+  border-top: 3px solid #f48225;
+  background-color: rgba(214, 217, 220, 0.24);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-title{
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(90, 90, 90);
 }

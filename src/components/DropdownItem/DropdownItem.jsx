@@ -1,31 +1,24 @@
-import React from 'react';
-import "./dropdownItem.css"
+import React from "react";
+import "./dropdownItem.css";
 
 const DropdownItem = (props) => {
-    const {
-        view, owner: {
-            display_name,
-            reputation
-        },
-        active,
-    } = props
+  const {
+    view,
+    owner: { display_name, reputation },
+    active,
+  } = props;
 
-    return (
-           <div className={`DropdownItem-container ${active ? 'opened' : ''}`} >
-                {active && (
-                    <>
-                     <div>
-                        Имя автора вопроса: {display_name}
-                    </div>
-                    <div>
-                        Рейтинг автора вопроса: {reputation}
-                    </div>
-                    <div>
-                        Количество просмотров: {view}
-                    </div>
-                    </>
-                )}
-                </div>)
+  return (
+    <div className={`dropdownItem-container ${active ? "opened" : ""}`}>
+      {active && (
+        <div className="dropdownItem-content">
+          <div><span>Имя автора вопроса:</span> {display_name}</div>
+          <div><span>Рейтинг автора вопроса:</span> {reputation}</div>
+          <div><span>Количество просмотров:</span> {view}</div>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default DropdownItem;
