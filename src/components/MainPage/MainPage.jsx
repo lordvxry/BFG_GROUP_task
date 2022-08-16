@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
 import "./mainPage.css";
-import { getQuestions } from "../../redux/actions/questionAction";
+import {getQuestions} from "../../redux/actions/questionAction";
 import QuestionList from "../QuestionList/QuestionList";
 import CustomLoader from "../UI/CustomLoader/CustomLoader";
-import {
-  downgradeScore,
-  updateOrder,
-  upgradeScore,
-} from "../../redux/reducers/questionReducer";
-import { initialDate } from "../../global/constants";
+import {downgradeScore, getCurrentDate, updateOrder, upgradeScore,} from "../../redux/reducers/questionReducer";
 
 const MainPage = (props) => {
   const {
@@ -19,17 +14,13 @@ const MainPage = (props) => {
     upgradeScore,
     downgradeScore,
     updateOrder,
+    date,
+    getCurrentDate,
   } = props;
-  const [requestDate, setRequestDate] = useState(initialDate);
 
   useEffect(() => {
-    getQuestions(+new Date(requestDate) / 1000);
-  }, []);
-
-  const currentDate = (date) => {
     getQuestions(+new Date(date) / 1000);
-    setRequestDate(date);
-  };
+  }, []);
 
   return (
     <div className="mainPage-container">
@@ -40,8 +31,8 @@ const MainPage = (props) => {
           questions={questions}
           upgradeScore={upgradeScore}
           downgradeScore={downgradeScore}
-          currentDate={currentDate}
-          requestDate={requestDate}
+          getCurrentDate={getCurrentDate}
+          date={date}
           updateOrder={updateOrder}
         />
       )}
@@ -52,6 +43,7 @@ const MainPage = (props) => {
 const mapStateToProps = (state) => ({
   questions: state.questionsReducer.questions,
   loading: state.questionsReducer.loading,
+  date: state.questionsReducer.date,
 });
 
 export default connect(mapStateToProps, {
@@ -59,4 +51,5 @@ export default connect(mapStateToProps, {
   upgradeScore,
   downgradeScore,
   updateOrder,
+  getCurrentDate,
 })(MainPage);

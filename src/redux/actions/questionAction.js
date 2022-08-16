@@ -5,18 +5,17 @@ export const getQuestions = (date) => {
   return async (dispatch) => {
     dispatch(setIsLoading(true));
     const items = [];
-    for (let i = 1; i < 26; i++) {
+
       const params = {
-        tagged: "react-redux",
+        intitle: "react-redux",
         fromdate: date,
-        page: i,
         pageSize: 100,
         order: "desc",
         sort: "votes",
         site: "stackoverflow",
       };
       const response = await axios.get(
-        "https://api.stackexchange.com/2.3/questions",
+        "https://api.stackexchange.com/2.3/search",
         { params }
       );
       response.data.items.forEach((item) => {
@@ -27,8 +26,6 @@ export const getQuestions = (date) => {
           items.push(item);
         }
       });
-      if (items.length === 5) break;
-    }
 
     dispatch(
       setQuestions(

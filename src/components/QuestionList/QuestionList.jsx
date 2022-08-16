@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./questionlist.css";
 import QuestionListItem from "../QuestionListItem/QuestionListItem";
 import DatePicker from "react-datepicker";
@@ -9,16 +9,14 @@ const QuestionList = (props) => {
     questions,
     upgradeScore,
     downgradeScore,
-    currentDate,
-    requestDate,
+    getCurrentDate,
+    date,
     updateOrder,
   } = props;
 
-  const [selectedDate, setSelectedDate] = useState(requestDate);
+  const [selectedDate, setSelectedDate] = useState(date);
   const [showSearch, setShowSearch] = useState(false);
   const [openedPostId, setOpenedPostId] = useState(0);
-  const questionRef = useRef();
-  const questionDblClickRef = useRef();
 
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [doubleClickQuestions, setDoubleClickQuestions] = useState([]);
@@ -26,22 +24,21 @@ const QuestionList = (props) => {
 
   useEffect(() => {
     const outsideClick = (event) => {
-      if (event.path[0] !== questionRef.current) {
         setOpenedPostId(0);
         setSelectedQuestion([]);
         setDoubleClickQuestions([]);
-      }
     };
     document.body.addEventListener("click", outsideClick);
 
     return () => document.body.removeEventListener("click", outsideClick);
   }, []);
 
-  const onChangeShowSearch = (date) => {
-    selectedDate.setHours(0, 0, 0, 0) === date.setHours(0, 0, 0, 0)
+  const onChangeShowSearch = (newSelectedDate) => {
+    date.setHours(0, 0, 0, 0) === newSelectedDate.setHours(0, 0, 0, 0)
       ? setShowSearch(false)
       : setShowSearch(true);
-    setSelectedDate(date);
+
+    setSelectedDate(newSelectedDate);
   }
 
   const onChangeDropdown = (id) => {
@@ -100,9 +97,9 @@ const QuestionList = (props) => {
   const onDoubleClickSorted = (e, question) => {
     e.stopPropagation();
     setSelectedQuestion([...selectedQuestion, question.question_id]);
-    doubleClickQuestions.push(question);
+    setDoubleClickQuestions([...doubleClickQuestions, question]);
 
-    if (doubleClickQuestions.length > 1) {
+    if (doubleClickQuestions.length > 0) {
       updateOrder(
         questions.map((item) => {
           if (item.question_id === doubleClickQuestions[0].question_id) {
@@ -114,8 +111,8 @@ const QuestionList = (props) => {
           return item;
         })
       );
+      setDoubleClickQuestions([]);
       setTimeout(() => {
-        setDoubleClickQuestions([]);
         setSelectedQuestion([]);
       }, 1000);
     }
@@ -130,13 +127,11 @@ const QuestionList = (props) => {
           <DatePicker
             wrapperClassName="datePicker"
             selected={selectedDate}
-            onSelect={(date) => onChangeShowSearch(date)}
+            onSelect={(newSelectedDate) => onChangeShowSearch(newSelectedDate)}
             dateFormat="dd/MM/yyyy"
           />
-          {showSearch ? (
-            <button onClick={() => currentDate(selectedDate)}>Search</button>
-          ) : (
-            <div />
+          {showSearch && (
+            <button onClick={() => getCurrentDate(selectedDate)}>Search</button>
           )}
         </div>
       </div>
@@ -162,9 +157,7 @@ const QuestionList = (props) => {
                 currentQuestion={currentQuestion}
                 setCurrentQuestion={setCurrentQuestion}
                 onDoubleClickSorted={onDoubleClickSorted}
-                questionRef={questionRef}
                 selectedQuestion={selectedQuestion}
-                questionDblClickRef={questionDblClickRef}
               />
             </div>
           );

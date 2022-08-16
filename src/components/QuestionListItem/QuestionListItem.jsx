@@ -11,9 +11,7 @@ const QuestionListItem = (props) => {
     onChangeDropdown,
     openedPostId,
     onDoubleClickSorted,
-    questionRef,
     selectedQuestion,
-    questionDblClickRef,
   } = props;
 
   const down = "\u2B07";
@@ -23,7 +21,6 @@ const QuestionListItem = (props) => {
   return (
     <div
       className="questionItem-container"
-      ref={questionRef}
       onClick={(e) => {
         clearTimeout(timer);
         e.stopPropagation();
@@ -35,7 +32,6 @@ const QuestionListItem = (props) => {
       }}
     >
       <div
-        ref={questionDblClickRef}
         className={`questionItem-content${
           selectedQuestion.includes(question_id)
             ? " selected"
